@@ -138,6 +138,7 @@
     // Click event handler for highlight1
     const highlight1Element = document.querySelector('.highlight1');
     highlight1Element.addEventListener('click', () => {
+      if(!highlight1Element.classList.contains('played')) {
       highlight1Element.classList.remove('playable');
       highlight1Element.classList.add('played');
       highlight1Element.classList.remove('under');
@@ -148,12 +149,13 @@
       const highlight2Element = document.querySelector('.highlight2');
       highlight2Element.classList.add('under');
       highlight2Element.classList.remove('unclickable');
+    }
     });
 
     // Click event handler for highlight2
     const highlight2Element = document.querySelector('.highlight2');
     highlight2Element.addEventListener('click', () => {
-      if (highlight1Element.classList.contains('played')) {
+      if (highlight1Element.classList.contains('played') & !highlight2Element.classList.contains('played')) {
         highlight2Element.classList.remove('playable');
         highlight2Element.classList.add('played');
         highlight2Element.classList.remove('under');
@@ -170,7 +172,7 @@
     // Click event handler for highlight3
     const highlight3Element = document.querySelector('.highlight3');
     highlight3Element.addEventListener('click', () => {
-      if (highlight2Element.classList.contains('played')) {
+      if (highlight2Element.classList.contains('played') & !highlight3Element.classList.contains('played')) {
         highlight3Element.classList.remove('playable');
         highlight3Element.classList.add('played');
         highlight3Element.classList.remove('under');
@@ -187,7 +189,7 @@
     // Click event handler for highlight4
     const highlight4Element = document.querySelector('.highlight4');
     highlight4Element.addEventListener('click', () => {
-      if (highlight3Element.classList.contains('played')) {
+      if (highlight3Element.classList.contains('played') & !highlight4Element.classList.contains('played')) {
         highlight4Element.classList.remove('playable');
         highlight4Element.classList.add('played');
         highlight4Element.classList.remove('under');
