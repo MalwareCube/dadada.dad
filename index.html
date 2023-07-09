@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>dadada.dad</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 72px;
+      margin-bottom: 20px;
+      font-family: monospace;
+      text-rendering: optimizeLegibility;
+    }
+    
+    .highlight1.playable {
+      color: cyan;
+
+      transition: all .1s;
+      opacity: .7;
+    }
+    
+    .highlight2.playable {
+      color: magenta;
+
+      transition: all .1s;
+      opacity: .7;
+    }
+    
+    .highlight3.playable {
+      color: yellow;
+
+      transition: all .1s;
+      opacity: .7;
+    }
+    
+    .highlight4.playable {
+      color: lime;
+
+      transition: all .1s;
+      opacity: .7;
+    }
+    
+    .highlight1.played,
+    .highlight2.played,
+    .highlight3.played {
+      color: black;
+    }
+    
+    .highlight4.played {
+      color: black;
+    }
+
+    .playable {
+      cursor: pointer;
+    }
+    
+    .playable:hover {
+      opacity: 100;
+    }
+
+    .unclickable {
+      cursor: default; !important;
+    }
+    
+    .grey {
+      color: white;
+      opacity: .3;
+    }
+
+    .under {
+      text-decoration: underline !important;
+      opacity: 1 !important;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>
+    <span class="highlight1 under playable">da</span>
+    <span class="highlight2 playable unclickable">da</span>
+    <span class="highlight3 playable unclickable">da</span>
+    <span class="grey">.</span>
+    <span class="highlight4 playable unclickable">da</span>
+    <span class="grey">d</span>
+  </h1>
+
+    <script>
+    // JavaScript code
+
+    // Helper function to play audio
+    function playAudio(audioSrc) {
+      const audio = new Audio(audioSrc);
+      audio.play();
+    }
+
+    // Reset function to restore initial state
+    function resetState() {
+      const highlight1Element = document.querySelector('.highlight1');
+      const highlight2Element = document.querySelector('.highlight2');
+      const highlight3Element = document.querySelector('.highlight3');
+      const highlight4Element = document.querySelector('.highlight4');
+
+      // Reset classes and enable highlighting
+      highlight1Element.classList.add('playable');
+      highlight1Element.classList.remove('played');
+      highlight1Element.classList.add('under');
+      
+      highlight2Element.classList.add('playable');
+      highlight2Element.classList.remove('played');
+      highlight2Element.classList.add('unclickable');
+      highlight2Element.classList.remove('under');
+      
+      highlight3Element.classList.add('playable');
+      highlight3Element.classList.remove('played');
+      highlight3Element.classList.add('unclickable');
+      highlight3Element.classList.remove('under');
+      
+      highlight4Element.classList.add('playable');
+      highlight4Element.classList.remove('played');
+      highlight4Element.classList.add('unclickable');
+      highlight4Element.classList.remove('under');
+    }
+
+    // Click event handler for highlight1
+    const highlight1Element = document.querySelector('.highlight1');
+    highlight1Element.addEventListener('click', () => {
+      highlight1Element.classList.remove('playable');
+      highlight1Element.classList.add('played');
+      highlight1Element.classList.remove('under');
+
+      highlight1Element.classList.toggle('1');
+      playAudio(highlight1Element.classList.contains('1') ? 'da1.mp3' : 'da3.mp3');
+
+      const highlight2Element = document.querySelector('.highlight2');
+      highlight2Element.classList.add('under');
+      highlight2Element.classList.remove('unclickable');
+    });
+
+    // Click event handler for highlight2
+    const highlight2Element = document.querySelector('.highlight2');
+    highlight2Element.addEventListener('click', () => {
+      if (highlight1Element.classList.contains('played')) {
+        highlight2Element.classList.remove('playable');
+        highlight2Element.classList.add('played');
+        highlight2Element.classList.remove('under');
+
+        highlight2Element.classList.toggle('1');
+        playAudio(highlight2Element.classList.contains('1') ? 'da1.mp3' : 'da3.mp3');
+
+        const highlight3Element = document.querySelector('.highlight3');
+        highlight3Element.classList.add('under');
+        highlight3Element.classList.remove('unclickable');
+      }
+    });
+
+    // Click event handler for highlight3
+    const highlight3Element = document.querySelector('.highlight3');
+    highlight3Element.addEventListener('click', () => {
+      if (highlight2Element.classList.contains('played')) {
+        highlight3Element.classList.remove('playable');
+        highlight3Element.classList.add('played');
+        highlight3Element.classList.remove('under');
+
+        highlight3Element.classList.toggle('1');
+        playAudio(highlight3Element.classList.contains('1') ? 'da1.mp3' : 'da3.mp3');
+
+        const highlight4Element = document.querySelector('.highlight4');
+        highlight4Element.classList.add('under');
+        highlight4Element.classList.remove('unclickable');
+      }
+    });
+
+    // Click event handler for highlight4
+    const highlight4Element = document.querySelector('.highlight4');
+    highlight4Element.addEventListener('click', () => {
+      if (highlight3Element.classList.contains('played')) {
+        highlight4Element.classList.remove('playable');
+        highlight4Element.classList.add('played');
+        highlight4Element.classList.remove('under');
+
+        highlight4Element.classList.toggle('1');
+        playAudio(highlight4Element.classList.contains('1') ? 'da2.mp3' : 'da4.mp3');
+
+        // Reset everything after 2 seconds
+        setTimeout(resetState, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
